@@ -4,11 +4,6 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
-/**
- * 腾讯课堂搜索 咕泡学院
- * 加群获取视频：608583947
- * 风骚的Michael 老师
- */
 public class JMSQueueProducer {
 
     public static void main(String[] args) {
@@ -21,7 +16,7 @@ public class JMSQueueProducer {
             connection.start();
 
             Session session = connection.createSession
-                    (Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);
+                    (Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
             //创建目的地
             Destination destination = session.createQueue("myQueue");
             //创建发送者
@@ -35,7 +30,7 @@ public class JMSQueueProducer {
                 //Text   Map  Bytes  Stream  Object
                 producer.send(message);
             }
-//            session.commit();
+            session.commit();
             session.close();
         } catch (JMSException e) {
             e.printStackTrace();
