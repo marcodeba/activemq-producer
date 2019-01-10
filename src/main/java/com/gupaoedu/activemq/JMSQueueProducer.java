@@ -16,7 +16,7 @@ public class JMSQueueProducer {
             connection.start();
 
             Session session = connection.createSession
-                    (Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
+                    (Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);
             //创建目的地
             Destination destination = session.createQueue("myQueue");
             //创建发送者
@@ -30,7 +30,8 @@ public class JMSQueueProducer {
                 //Text   Map  Bytes  Stream  Object
                 producer.send(message);
             }
-            session.commit();
+            // Boolean.FALSE, Session.AUTO_ACKNOWLEDGE自动commit
+//            session.commit();
             session.close();
         } catch (JMSException e) {
             e.printStackTrace();
