@@ -15,6 +15,12 @@ public class JMSTopicProducer {
             connection = connectionFactory.createConnection();
             connection.start();
 
+            /**
+             * true事物模式，false非事物模式
+             * 默认情况下，非持久化消息都是异步发送
+             * 非持久化消息在非事物模式下是同步发送
+             * 开启事物，消息都是异步发送
+             */
             Session session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
             //创建目的地
             Destination destination = session.createTopic("myTopic");
